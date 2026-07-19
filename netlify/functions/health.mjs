@@ -1,0 +1,1 @@
+import {db,response} from './_db.mjs';export async function handler(){try{const sql=db();const [r]=await sql`SELECT now() server_time`;return response(200,{status:'ok',...r})}catch(e){return response(500,{status:'error',error:e.message})}}

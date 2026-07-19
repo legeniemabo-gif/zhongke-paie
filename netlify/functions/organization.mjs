@@ -1,0 +1,2 @@
+import {db,response} from './_db.mjs';
+export async function handler(event){if(event.httpMethod==='OPTIONS')return response(204,{});try{const sql=db();const departments=await sql`SELECT * FROM departments WHERE active=true ORDER BY sort_order`;const services=await sql`SELECT * FROM services WHERE active=true ORDER BY sort_order`;return response(200,{departments,services})}catch(e){return response(500,{error:e.message})}}
